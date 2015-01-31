@@ -9,7 +9,7 @@ function dld_add_ga_option() {
 }
 
 function dld_register_ga_settings() {
-	register_setting( 'dld_ga_settings', 'ga_tracking_code' );
+	register_setting( 'dld_ga_settings', 'ga_tracking_code', 'dld_ga_input_sanitize' );
 }
 
 function dld_admin_ga_input() {
@@ -32,4 +32,10 @@ function dld_admin_ga_input() {
 
 	</div>
 	<?php
+}
+
+function dld_ga_input_sanitize( $input ) {
+
+	$input = sanitize_text_field( $input );
+	return $input;
 }
