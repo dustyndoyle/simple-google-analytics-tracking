@@ -1,9 +1,10 @@
 <?php
 /*
 Plugin Name: Simple Google Analytics Tracking
+Plugin URI: https://github.com/dustyndoyle/simple-google-analytics-tracking
 Description: Simple plugin to add Google Analytics Tracking to your site with your Tracking ID.
 Author: Dustyn Doyle
-Version: 1.0
+Version: 1.1
 Author URI: http://www.dustyndoyle.com
 */
 /*  Copyright 2015  dustyn  (email : dustyn_doyle@yahoo.com)
@@ -23,3 +24,12 @@ Author URI: http://www.dustyndoyle.com
 */
 
 foreach ( glob( dirname( __FILE__ ) . '/includes/*.php' ) as $file ) { include $file; }
+
+// Add Settings link on plugins page
+add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), 'dld_add_settings_link' );
+
+function dld_add_settings_link( $links ) {
+
+	$links[] = '<a href="' . admin_url() . 'options-general.php?page=simple-ga-tracking.php">Settings</a>';
+	return $links;
+}
