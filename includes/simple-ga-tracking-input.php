@@ -60,8 +60,9 @@ function dld_ga_admin_init() {
 }
 
 function dld_ga_section_text() {
-	echo '<p>Enter your Google Analytics Tracking ID in the input box below</p>';
+
 	echo '<p>Find your Tracking ID after logging into your profile by going to:<br />Admin > Property > Tracking Info > Tracking Code</p>';
+	echo '<p>Enter your Google Analytics Tracking ID in the input box below and choose which logged in users to track.<br />(Editors and Administrators are not tracked by deafult)</p>';
 }
 
 function dld_ga_tracking_code_input() {
@@ -90,12 +91,20 @@ function dld_ga_user_group_input() {
 
 	$html = '';
 	$html .= '<fieldset>';
+
+	// Include Everybody
+	$html .= '<p>';
+	$html .= '<label for="ga_user_group_none">';
+	$html .= '<input type="radio" id="ga_user_group_none" name="ga_tracking_options[ga_user_group_tracking]" value="0"' . checked( 0, $user_selected, false ) . ' />';
+	$html .= 'Include All Users';
+	$html .= '</label>';
+	$html .= '</p>';
 	
 	// Exclude Subscribers
 	$html .= '<p>';
 	$html .= '<label for="ga_user_group_subscriber">';
 	$html .= '<input type="radio" id="ga_user_group_subscriber" name="ga_tracking_options[ga_user_group_tracking]" value="1"' . checked( 1, $user_selected, false ) . ' />';
-	$html .= 'Exclude Subscribers';
+	$html .= 'Exclude Subscribers, Contributors, Authors, Editors, and Administrators';
 	$html .= '</label>';
 	$html .= '</p>';
 
@@ -103,7 +112,7 @@ function dld_ga_user_group_input() {
 	$html .= '<p>';
 	$html .= '<label for="ga_user_group_contributor">';
 	$html .= '<input type="radio" id="ga_user_group_contributor" name="ga_tracking_options[ga_user_group_tracking]" value="2"' . checked( 2, $user_selected, false ) . ' />';
-	$html .= 'Exclude Contributors';
+	$html .= 'Exclude Contributors, Authors, Editors, and Administrators';
 	$html .= '</label>';
 	$html .= '</p>';
 
@@ -111,7 +120,7 @@ function dld_ga_user_group_input() {
 	$html .= '<p>';
 	$html .= '<label for="ga_user_group_authors">';
 	$html .= '<input type="radio" id="ga_user_group_authors" name="ga_tracking_options[ga_user_group_tracking]" value="3"' . checked( 3, $user_selected, false ) . ' />';
-	$html .= 'Exclude Authors';
+	$html .= 'Exclude Authors, Editors, and Administrators';
 	$html .= '</label>';
 	$html .= '</p>';
 
@@ -119,7 +128,7 @@ function dld_ga_user_group_input() {
 	$html .= '<p>';
 	$html .= '<label for="ga_user_group_editors">';
 	$html .= '<input type="radio" id="ga_user_group_editors" name="ga_tracking_options[ga_user_group_tracking]" value="4"' . checked( 4, $user_selected, false ) . ' />';
-	$html .= 'Exclude Editors';
+	$html .= 'Exclude Editors, and Administrators';
 	$html .= '</label>';
 	$html .= '</p>';
 
