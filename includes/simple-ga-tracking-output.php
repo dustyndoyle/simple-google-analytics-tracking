@@ -5,7 +5,7 @@ add_action( 'wp_footer', 'dld_add_ga_tracking' );
 
 function dld_add_ga_tracking() {
 
-	$options = get_option("ga_tracking_options");
+	$options = get_option("dld_ga_tracking_options");
 
 	// Default to Editors
 	$user_option = 'edit_pages';
