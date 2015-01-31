@@ -5,7 +5,7 @@ add_action( 'wp_footer', 'dld_add_ga_tracking' );
 
 function dld_add_ga_tracking() {
 
-	$ga_tracking_id = get_option("ga_tracking_code");
+	$ga_tracking_id = esc_attr( get_option("ga_tracking_code") );
 
 	if( !empty($ga_tracking_id) ) {
 	?>
