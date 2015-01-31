@@ -5,12 +5,12 @@ add_action( 'admin_menu', 'dld_add_ga_option' );
 
 function dld_add_ga_option() {
 	add_options_page( 'Google Analtics', 'Google Analytics', 'manage_options', 'simple-ga-tracking.php', 'dld_admin_ga_input' );
-	add_action( 'admin_init', 'dld_register_ga_settings' );
+	// add_action( 'admin_init', 'dld_register_ga_settings' );
 }
 
-function dld_register_ga_settings() {
-	register_setting( 'dld_ga_settings', 'ga_tracking_code', 'dld_ga_input_sanitize' );
-}
+// function dld_register_ga_settings() {
+// 	register_setting( 'dld_ga_settings', 'ga_tracking_code', 'dld_ga_input_sanitize' );
+// }
 
 function dld_admin_ga_input() {
 	?>
@@ -21,17 +21,42 @@ function dld_admin_ga_input() {
 		
 		<form method="post" action="options.php">
 			<?php settings_fields( 'dld_ga_settings' ); ?>
-			<table class="form-table">
-				<tr valign="top">
-					<th scope="row">Tracking ID</th>
-					<td><input type="text" name="ga_tracking_code" value="<?php echo esc_attr( get_option('ga_tracking_code') ); ?>" /></td>
-				</tr>
-			</table>
+			<?php do_settings_sections( 'dld_ga_section' ); ?>
 			<?php submit_button( 'Save Tracking ID' ); ?>
 		</form>
 
 	</div>
 	<?php
+}
+
+add_action( 'admin_init', 'dld_ga_admin_init' );
+
+function dld_ga_admin_init() {
+	register_setting( 'dld_ga_settings', 'ga_tracking_options' );
+	add_settings_section( 'ga_main_section', 'Google Analytics', 'dld_ga_section_text', 'dld_ga_section' );
+	add_settings_field( 'ga_tracking_code', 'Tracking Code', 'dld_ga_tracking_code_input', 'dld_ga_section', 'ga_main_section' );
+}
+
+function dld_ga_section_text() {
+	echo '<p>';
+	echo 'Simple Google Analytics text input field';
+	echo '</p>';
+}
+
+function dld_ga_tracking_code_input() {
+	$options = get_option( 'ga_tracking_options' );
+
+	$html = '';
+	$html .= '<fieldset>';
+	$html .= '<p>';
+	$html .= '<label for="ga_tracking_code_input">';
+	$html .= '<input type="text" id="ga_tracking_code_input" name="ga_tracking_options[ga_tracking_code]" value="' . esc_attr( $options['ga_tracking_code'] ) . '" />';
+	$html .= 'Tracking ID';
+	$html .= '</label>';
+	$html .= '</p>';
+
+	$html .= '</fieldset>';
+	echo $html;
 }
 
 function dld_ga_input_sanitize( $input ) {

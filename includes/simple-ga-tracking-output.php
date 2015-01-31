@@ -7,7 +7,10 @@ function dld_add_ga_tracking() {
 
 	$ga_tracking_id = esc_attr( get_option("ga_tracking_code") );
 
-	if( !empty($ga_tracking_id) && !current_user_can( 'edit_pages' ) ) {
+	if(
+		!empty($ga_tracking_id) 
+		// && !current_user_can( 'edit_pages' )
+	) {
 	?>
 	<!-- BEGIN: Simple Google Analytics Tracking Code -->
 	<script>
