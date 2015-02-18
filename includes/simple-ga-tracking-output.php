@@ -9,9 +9,9 @@ function dld_add_ga_tracking() {
 
 	// Default to Editors
 	$user_option = 'edit_pages';
-
+	
 	if(
-		!empty( $options['ga_tracking_code'] ) // There is a tracking code
+		$tracking_id // There is a tracking code
 		&& !current_user_can( $user_option ) // The current user is less than the role defined
 	) {
 	?>
@@ -22,7 +22,7 @@ function dld_add_ga_tracking() {
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-		ga('create', '<?php echo esc_attr( $options["ga_tracking_code"] ); ?>', 'auto');
+		ga('create', '<?php echo esc_attr( $tracking_id ); ?>', 'auto');
 		ga('send', 'pageview');
 
 	</script>
@@ -32,3 +32,15 @@ function dld_add_ga_tracking() {
 	} // If there is a tracking id and user is allowed to be tracked
 
 }
+
+function dld_get_ga_tracking_id() {
+	$options = get_option("dld_ga_tracking_options");
+	if ( ! empty( $options ) ) {
+		$tracking_id = isset( $options['ga_tracking_code'] ) ? $options['ga_tracking_code'] : null;
+	} else {
+		$tracking_id = get_option("ga_tracking_code");
+	}
+	return $tracking_id;
+}
+
+
