@@ -9,4 +9,5 @@ Simple Google Analytics Tracking does NOT track logged in editors and administra
 
 Contributors
 --------------------------------
-@dustyndoyle, @salcode
+[@dustyndoyle](https://github.com/dustyndoyle),
+[@salcode](https://github.com/salcode)
