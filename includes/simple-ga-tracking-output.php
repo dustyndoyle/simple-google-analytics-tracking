@@ -6,13 +6,11 @@ add_action( 'wp_head', 'dld_add_ga_tracking', 5 );
 function dld_add_ga_tracking() {
 
 	$tracking_id = apply_filters( 'ga_tracking_id', get_option("ga_tracking_code") );
-
-	// Default to Editors
-	$user_option = 'edit_pages';
 	
 	if(
 		!empty( $tracking_id ) // There is a tracking code
-		&& !current_user_can( $user_option ) // The current user is less than the role defined
+		&& !current_user_can( 'administrator' ) // The current user is NOT an admin
+		&& !current_user_can( 'editor' ) // The current user is NOT an editor
 	) {
 	?>
 	<!-- BEGIN: Simple Google Analytics Tracking Code -->
