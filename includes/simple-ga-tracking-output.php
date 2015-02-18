@@ -5,7 +5,7 @@ add_action( 'wp_head', 'dld_add_ga_tracking', 5 );
 
 function dld_add_ga_tracking() {
 
-	$tracking_id = get_option("ga_tracking_code");
+	$tracking_id = apply_filters( 'ga_tracking_id', get_option("ga_tracking_code") );
 
 	// Default to Editors
 	$user_option = 'edit_pages';
