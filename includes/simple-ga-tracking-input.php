@@ -44,14 +44,6 @@ function dld_ga_admin_init() {
 		'dld_ga_section', // Page to display setting
 		'dld_ga_main_section' // Section to display setting
 	);
-	// User Group Settings
-	add_settings_field(
-		'ga_user_group_tracking', // Setting ID
-		'Users to Track', // Setting Title
-		'dld_ga_user_group_input', // Setting function name
-		'dld_ga_section', // Page to display setting
-		'dld_ga_main_section' // Section to display setting
-	);
 }
 
 function dld_ga_section_text() {
@@ -67,72 +59,6 @@ function dld_ga_tracking_code_input() {
 	$html .= '<fieldset>';
 	$html .= '<p>';
 	$html .= '<input type="text" id="ga_tracking_code_input" name="dld_ga_tracking_options[ga_tracking_code]" value="' . esc_attr( $options['ga_tracking_code'] ) . '" />';
-	$html .= '</p>';
-
-	$html .= '</fieldset>';
-	echo $html;
-}
-
-function dld_ga_user_group_input() {
-	$options = get_option( 'dld_ga_tracking_options' );
-
-	if ( isset($options['ga_user_group_tracking']) ) {
-		// If there is a user group selected use that option
-		$user_selected = $options['ga_user_group_tracking'];
-	} else {
-		// Otherwise default to Editors
-		$user_selected = 4;
-	}
-
-	$html = '';
-	$html .= '<fieldset>';
-
-	// Include Everybody
-	$html .= '<p>';
-	$html .= '<label for="ga_user_group_none">';
-	$html .= '<input type="radio" id="ga_user_group_none" name="dld_ga_tracking_options[ga_user_group_tracking]" value="0"' . checked( 0, $user_selected, false ) . ' />';
-	$html .= 'Include All Users';
-	$html .= '</label>';
-	$html .= '</p>';
-	
-	// Exclude Subscribers
-	$html .= '<p>';
-	$html .= '<label for="ga_user_group_subscriber">';
-	$html .= '<input type="radio" id="ga_user_group_subscriber" name="dld_ga_tracking_options[ga_user_group_tracking]" value="1"' . checked( 1, $user_selected, false ) . ' />';
-	$html .= 'Exclude Subscribers, Contributors, Authors, Editors, and Administrators';
-	$html .= '</label>';
-	$html .= '</p>';
-
-	// Exclude Contributors
-	$html .= '<p>';
-	$html .= '<label for="ga_user_group_contributor">';
-	$html .= '<input type="radio" id="ga_user_group_contributor" name="dld_ga_tracking_options[ga_user_group_tracking]" value="2"' . checked( 2, $user_selected, false ) . ' />';
-	$html .= 'Exclude Contributors, Authors, Editors, and Administrators';
-	$html .= '</label>';
-	$html .= '</p>';
-
-	// Exclude Authors
-	$html .= '<p>';
-	$html .= '<label for="ga_user_group_authors">';
-	$html .= '<input type="radio" id="ga_user_group_authors" name="dld_ga_tracking_options[ga_user_group_tracking]" value="3"' . checked( 3, $user_selected, false ) . ' />';
-	$html .= 'Exclude Authors, Editors, and Administrators';
-	$html .= '</label>';
-	$html .= '</p>';
-
-	// Exclude Editors
-	$html .= '<p>';
-	$html .= '<label for="ga_user_group_editors">';
-	$html .= '<input type="radio" id="ga_user_group_editors" name="dld_ga_tracking_options[ga_user_group_tracking]" value="4"' . checked( 4, $user_selected, false ) . ' />';
-	$html .= 'Exclude Editors, and Administrators';
-	$html .= '</label>';
-	$html .= '</p>';
-
-	// Exclude Admins
-	$html .= '<p>';
-	$html .= '<label for="ga_user_group_admins">';
-	$html .= '<input type="radio" id="ga_user_group_admins" name="dld_ga_tracking_options[ga_user_group_tracking]" value="5"' . checked( 5, $user_selected, false ) . ' />';
-	$html .= 'Exclude Administrators';
-	$html .= '</label>';
 	$html .= '</p>';
 
 	$html .= '</fieldset>';

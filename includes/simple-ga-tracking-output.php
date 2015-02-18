@@ -10,33 +10,6 @@ function dld_add_ga_tracking() {
 	// Default to Editors
 	$user_option = 'edit_pages';
 
-	switch ( $options['ga_user_group_tracking'] ) {
-		case 0:
-			// All Users
-			$user_option = '';
-			break;
-		case 1:
-			// Subsrcibers
-			$user_option = 'read';
-			break;
-		case 2:
-			// Editors
-			$user_option = 'edit_posts';
-			break;
-		case 3:
-			// Authors
-			$user_option = 'publish_posts';
-			break;
-		case 4:
-			// Editors
-			$user_option = 'edit_pages';
-			break;
-		case 5:
-			// Administrators
-			$user_option = 'edit_files';
-			break;
-	}
-
 	if(
 		!empty( $options['ga_tracking_code'] ) // There is a tracking code
 		&& !current_user_can( $user_option ) // The current user is less than the role defined
