@@ -1,17 +1,17 @@
 <?php
 // Add Google Analytics Tracking Code to page if anything is input
 
-add_action( 'wp_footer', 'dld_add_ga_tracking' );
+add_action( 'wp_head', 'dld_add_ga_tracking', 5 );
 
 function dld_add_ga_tracking() {
 
-	$options = get_option("dld_ga_tracking_options");
+	$tracking_id = get_option("ga_tracking_code");
 
 	// Default to Editors
 	$user_option = 'edit_pages';
 	
 	if(
-		$tracking_id // There is a tracking code
+		!empty( $tracking_id ) // There is a tracking code
 		&& !current_user_can( $user_option ) // The current user is less than the role defined
 	) {
 	?>
@@ -32,15 +32,4 @@ function dld_add_ga_tracking() {
 	} // If there is a tracking id and user is allowed to be tracked
 
 }
-
-function dld_get_ga_tracking_id() {
-	$options = get_option("dld_ga_tracking_options");
-	if ( ! empty( $options ) ) {
-		$tracking_id = isset( $options['ga_tracking_code'] ) ? $options['ga_tracking_code'] : null;
-	} else {
-		$tracking_id = get_option("ga_tracking_code");
-	}
-	return $tracking_id;
-}
-
 
