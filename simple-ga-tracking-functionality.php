@@ -23,7 +23,12 @@ Author URI: http://www.dustyndoyle.com
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-foreach ( glob( dirname( __FILE__ ) . '/includes/*.php' ) as $file ) { include $file; }
+$plugin_dir_path = plugin_dir_path(__FILE__);
+if ( is_admin() ) {
+	require_once( "{$plugin_dir_path}includes/simple-ga-tracking-input.php" );
+} else {
+	require_once( "{$plugin_dir_path}includes/simple-ga-tracking-output.php" );
+}
 
 // Add Settings link on plugins page
 add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), 'dld_add_settings_link' );
