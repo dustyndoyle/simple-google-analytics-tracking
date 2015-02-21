@@ -10,14 +10,24 @@ Simple Google Analytics Tracking does NOT track logged in editors and administra
 Filters
 ------------
 
+By default Simple Google Analytics does NOT track logged in Administrators and Editors, the filter `sgat_output_ga_code` allows you to override that setting.
+
+Example Usage:
+```
+add_filter( 'sgat_output_ga_code', 'sgat_override_user_settings' );
+function sgat_override_user_settings() {
+  return true;
+}
+```
+
 You can also add your Google Analytics Tracking ID programmatically through the filter `ga_tracking_id`.
 
 Example Usage:
 ```
-apply_filter( 'ga_tracking_id', 'dld_custom_ga_tracking_id' );
-function dld_custom_ga_tracking_id( tracking_id ) {
-  tracking_id = 'UA-123456-7';
-  return tracking_id;
+add_filter( 'sgat_tracking_id', 'sgat_custom_ga_tracking_id' );
+function sgat_custom_ga_tracking_id( $tracking_id ) {
+  $tracking_id = 'UA-123456-7';
+  return $tracking_id;
 }
 ```
 Contributors
