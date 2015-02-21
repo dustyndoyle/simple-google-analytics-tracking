@@ -9,8 +9,7 @@ function sgat_add_tracking() {
 	
 	if(
 		!empty( $tracking_id ) // There is a tracking code
-		&& !current_user_can( 'administrator' ) // The current user is NOT an admin
-		&& !current_user_can( 'editor' ) // The current user is NOT an editor
+		&& apply_filters( 'sgat_output_ga_code', sgat_allow_tracking() )
 	) {
 	?>
 	<!-- BEGIN: Simple Google Analytics Tracking Code -->
@@ -31,3 +30,15 @@ function sgat_add_tracking() {
 
 }
 
+function sgat_allow_tracking() {
+
+	if (
+		current_user_can( 'administrator' ) // The current user is an admin
+		|| current_user_can( 'editor' ) // The current user is an editor
+	) {
+
+		return false;
+	}
+
+	return true;
+}
