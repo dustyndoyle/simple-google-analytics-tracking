@@ -1,11 +1,11 @@
 <?php
 // Add Google Analytics Tracking Code to page if anything is input
 
-add_action( 'wp_head', 'dld_add_ga_tracking', 5 );
+add_action( 'wp_head', 'sgat_add_tracking', 1 );
 
-function dld_add_ga_tracking() {
+function sgat_add_tracking() {
 
-	$tracking_id = apply_filters( 'ga_tracking_id', get_option("ga_tracking_code") );
+	$tracking_id = apply_filters( 'sgat_tracking_id', get_option("sgat_tracking_code") );
 	
 	if(
 		!empty( $tracking_id ) // There is a tracking code

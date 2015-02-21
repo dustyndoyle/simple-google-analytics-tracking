@@ -31,10 +31,10 @@ if ( is_admin() ) {
 }
 
 // Add Settings link on plugins page
-add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), 'dld_add_settings_link' );
+add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), 'sgat_add_settings_link' );
 
-function dld_add_settings_link( $links ) {
+function sgat_add_settings_link( $links ) {
 
-	$links[] = '<a href="' . admin_url() . 'options-general.php?page=simple-ga-tracking.php">Settings</a>';
+	$links[] = '<a href="' . admin_url() . 'options-general.php?page=simple-google-analytics-tracking.php">Settings</a>';
 	return $links;
 }
