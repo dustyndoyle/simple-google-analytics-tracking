@@ -57,10 +57,7 @@ function dld_ga_section_text() {
 
 function dld_ga_input_sanitize( $input ) {
 
-	// error_log( print_r($input, true) );
-
 	$input = sanitize_text_field( $input );
 
-	// error_log( print_r($input, true) );
 	return $input;
 }
