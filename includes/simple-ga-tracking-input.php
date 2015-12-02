@@ -10,7 +10,7 @@ function sgat_add_option() {
 function sgat_admin_input() {
 	?>
 	<div class="wrap">
-		<h2>Simple Google Analytics</h2>
+		<h2>Simple Google Analytics Tracking</h2>
 		
 		<form method="post" action="options.php">
 			<?php settings_fields( 'sgat_settings' ); ?>
@@ -32,7 +32,7 @@ function sgat_admin_init() {
 	);
 	add_settings_section(
 		'sgat_main_section', // Section ID
-		'Simple Google Analytics Settings', // Section Title
+		'Simple Google Analytics Tracking Settings', // Section Title
 		'sgat_section_text', // Section function name
 		'sgat_section' // Page to display section
 	);
@@ -46,12 +46,12 @@ function sgat_section_text() {
 	$html .= '<p>Enter your Google Analytics Tracking ID in the input box below.<br />(Editors and Administrators are not tracked)</p>';
 	
 	$html .= '<fieldset>';
-	$html .= '<p>';
-	$html .= '<b>Tracking ID:</b> ';
-	$html .= '<input type="text" id="sgat_tracking_code_input" name="sgat_tracking_code" value="' . esc_attr( get_option('sgat_tracking_code') ) . '" />';
-	$html .= '</p>';
-
+		$html .= '<p>';
+			$html .= '<b>Tracking ID:</b> ';
+			$html .= '<input type="text" id="sgat_tracking_code_input" name="sgat_tracking_code" value="' . esc_attr( get_option('sgat_tracking_code') ) . '" />';
+		$html .= '</p>';
 	$html .= '</fieldset>';
+	
 	echo $html;
 }
 
