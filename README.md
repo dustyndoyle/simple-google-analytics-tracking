@@ -20,7 +20,7 @@ function sgat_override_user_settings() {
 }
 ```
 
-You can also add your Google Analytics Tracking ID programmatically through the filter `ga_tracking_id`.
+You can also add your Google Analytics Tracking ID programmatically through the filter `sgat_tracking_id`.
 
 Example Usage:
 ```
