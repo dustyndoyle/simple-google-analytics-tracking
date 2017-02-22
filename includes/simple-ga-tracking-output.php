@@ -25,6 +25,7 @@ function sgat_add_tracking() {
 
 		ga('create', <?php echo json_encode( $create_options ); ?> );
 		ga('send', 'pageview');
+		<?php do_action( 'sgat_after_tracker' ); ?>
 
 	</script>
 	<!-- END: Simple Google Analytics Tracking Code -->
