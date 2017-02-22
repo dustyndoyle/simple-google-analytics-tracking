@@ -4,7 +4,7 @@
 add_action( 'admin_menu', 'sgat_add_option' );
 
 function sgat_add_option() {
-	add_options_page( 'Google Analtics', 'Google Analytics', 'manage_options', 'simple-google-analytics-tracking.php', 'sgat_admin_input' );
+	add_options_page( 'Google Analytics', 'Google Analytics', 'manage_options', 'simple-google-analytics-tracking.php', 'sgat_admin_input' );
 }
 
 function sgat_admin_input() {
