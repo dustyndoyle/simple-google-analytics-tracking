@@ -6,7 +6,11 @@ add_action( 'wp_head', 'sgat_add_tracking', 1 );
 function sgat_add_tracking() {
 
 	$tracking_id = apply_filters( 'sgat_tracking_id', get_option("sgat_tracking_code") );
-	
+	$create_options = apply_filters( 'sgat_tracker_create_fields', array(
+		'cookieDomain'  => 'auto',
+		'trackingId'    => $tracking_id,
+	) );
+
 	if(
 		!empty( $tracking_id ) // There is a tracking code
 		&& apply_filters( 'sgat_output_ga_code', sgat_allow_tracking() )
@@ -19,7 +23,7 @@ function sgat_add_tracking() {
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-		ga('create', '<?php echo esc_attr( $tracking_id ); ?>', 'auto');
+		ga('create', <?php echo json_encode( $create_options ); ?> );
 		ga('send', 'pageview');
 
 	</script>
