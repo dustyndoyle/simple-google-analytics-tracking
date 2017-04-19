@@ -4,10 +4,10 @@ Plugin Name: Simple Google Analytics Tracking
 Plugin URI: https://github.com/dustyndoyle/simple-google-analytics-tracking
 Description: Add Google Analytics Tracking to your site easily with your Tracking ID.
 Author: Dustyn Doyle
-Version: 1.2
+Version: 1.3
 Author URI: http://www.dustyndoyle.com
 */
-/*  Copyright 2015  dustyn  (email : dustyn_doyle@yahoo.com)
+/*  Copyright 2017  dustyn  (email : dustyn_doyle@yahoo.com)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License, version 2, as 
