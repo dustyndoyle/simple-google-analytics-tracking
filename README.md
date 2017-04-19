@@ -57,5 +57,5 @@ add_action( 'sgat_after_tracker', 'my_sgat_after_tracker' );
 Contributors
 -------------
 [@dustyndoyle](https://github.com/dustyndoyle),
-[@salcode](https://github.com/salcode)
+[@salcode](https://github.com/salcode),
 [@leewillis77](https://github.com/leewillis77)
