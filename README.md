@@ -30,6 +30,30 @@ function sgat_custom_ga_tracking_id( $tracking_id ) {
   return $tracking_id;
 }
 ```
+
+If you want to modify the information used when creating the ga tracker, you can filter the arguments
+through the filter `sgat_tracker_create_fields`.
+
+Example Usage:
+```
+function my_sgat_tracker_create_fields( $fields ) {
+	$fields['siteSpeedSampleRate'] = 50;
+	return $fields;
+}
+add_action( 'sgat_tracker_create_fields', 'my_sgat_tracker_create_fields' );
+```
+
+If you want to add additional ga() calls after the main tracker output, you can hook onto the
+action `sgat_after_tracker`.
+
+Example Usage:
+```
+function my_sgat_after_tracker() {
+	echo "ga('send', 'event', 'MyCategory', 'MyAction', 'MyLabel', 50);";
+}
+add_action( 'sgat_after_tracker', 'my_sgat_after_tracker' );
+```
+
 Contributors
 -------------
 [@dustyndoyle](https://github.com/dustyndoyle),
